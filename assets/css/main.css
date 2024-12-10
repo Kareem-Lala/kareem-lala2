@@ -142,40 +142,31 @@ h6 {
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
-.header {
-  --background-color: rgba(0, 0, 0, 0);
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 15px 0;
-  transition: all 0.5s;
-  z-index: 997;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
 }
 
-.header .logo {
-  line-height: 1;
+.logo img {
+  height: 50px;
 }
 
-.header .logo img {
-  max-height: 32px;
-  margin-right: 8px;
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
 }
 
-.header .logo h1 {
-  font-size: 30px;
-  margin: 0;
-  font-weight: 700;
-  color: var(--heading-color);
+nav a:hover {
+  color: #ff9900;
+  text-decoration: underline;
 }
 
-.scrolled .header {
-  box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
-}
-
-/* Global Header on Scroll
-------------------------------*/
-.scrolled .header {
-  --background-color: rgba(0, 0, 0, 0.8);
-}
 
 /*--------------------------------------------------------------
 # Navigation Menu
