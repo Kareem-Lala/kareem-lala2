@@ -12,6 +12,7 @@
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
+
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -35,6 +36,80 @@
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
+
+
+  /**
+   * Contact form
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const resultSection = document.getElementById('result-section');
+  
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent default form submission
+  
+      // Collecting form data
+      const name = document.getElementById('name').value.trim();
+      const surname = document.getElementById('surname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const attr1 = parseFloat(document.getElementById('attr1').value) || 0;
+      const attr2 = parseFloat(document.getElementById('attr2').value) || 0;
+      const attr3 = parseFloat(document.getElementById('attr3').value) || 0;
+      const attr4 = parseFloat(document.getElementById('attr4').value) || 0;
+      const attr5 = parseFloat(document.getElementById('attr5').value) || 0;
+  
+      // Calculate the average of attributes
+      const numericAttributes = [attr1, attr2, attr3, attr4, attr5];
+      const average = numericAttributes.reduce((sum, val) => sum + val, 0) / numericAttributes.length;
+  
+      // Determine the average color
+      let averageColor = 'green'; // Default color
+      if (average < 10) {
+        averageColor = 'red';
+      } else if (average < 20) {
+        averageColor = 'orange';
+      }
+  
+      const headingColor = 'darkblue';  // Color for headings
+      const paragraphColor = 'darkgray'; // Color for paragraphs
+
+      // Display the result in the result-section
+      resultSection.innerHTML = `
+        <h4 style="color: ${headingColor};">Submitted Information:</h4>
+        <p style="color: ${paragraphColor};"><strong>Name:</strong> ${name}</p>
+        <p style="color: ${paragraphColor};"><strong>Surname:</strong> ${surname}</p>
+        <p style="color: ${paragraphColor};"><strong>Email:</strong> ${email}</p>
+        <p style="color: ${paragraphColor};"><strong>Phone:</strong> ${phone}</p>
+        <p style="color: ${paragraphColor};"><strong>Address:</strong> ${address}</p>
+        <p style="color: ${paragraphColor};"><strong>Attribute 1:</strong> ${attr1}</p>
+        <p style="color: ${paragraphColor};"><strong>Attribute 2:</strong> ${attr2}</p>
+        <p style="color: ${paragraphColor};"><strong>Attribute 3:</strong> ${attr3}</p>
+        <p style="color: ${paragraphColor};"><strong>Attribute 4:</strong> ${attr4}</p>
+        <p style="color: ${paragraphColor};"><strong>Attribute 5:</strong> ${attr5}</p>
+        <p style="color: ${paragraphColor};"><strong>Average:</strong> 
+          <span style="color: ${averageColor}; font-weight: bold;">${average.toFixed(2)}</span>
+        </p>
+      `;
+  
+      // Log data to console (optional for debugging)
+      console.log({
+        name,
+        surname,
+        email,
+        phone,
+        address,
+        attr1,
+        attr2,
+        attr3,
+        attr4,
+        attr5,
+        average,
+      });
+    });
+  });
+  
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -200,5 +275,42 @@
     });
 
   });
+  
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme') || 'light';
 
+  document.body.classList.add(`${currentTheme}-mode`);
+
+  themeToggleBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('light-mode')) {
+          document.body.classList.replace('light-mode', 'dark-mode');
+          localStorage.setItem('theme', 'dark');
+      } else {
+          document.body.classList.replace('dark-mode', 'light-mode');
+          localStorage.setItem('theme', 'light');
+      }
+  });
+});
+  
+  // Function to get the current time and format it
+  function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    
+    // Display the time in the clock element
+    document.getElementById('clock').textContent = formattedTime;
+  }
+
+  // Call updateClock every second
+  setInterval(updateClock, 1000);
+
+  // Initialize the clock immediately
+  updateClock();
+
+
+ 
 })();

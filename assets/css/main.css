@@ -1,3 +1,20 @@
+
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --background-color-dark: #1a1a1a;
+  --text-color-dark: #ffffff;
+}
+
+body.light-mode {
+  --background-color: var(--background-color-light);
+  --default-color: var(--text-color-light);
+}
+
+body.dark-mode {
+  --background-color: var(--background-color-dark);
+  --default-color: var(--text-color-dark);
+}
 /**
 * Template Name: Personal
 * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
@@ -142,31 +159,40 @@ h6 {
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
+.header {
+  --background-color: rgba(0, 0, 0, 0);
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 15px 0;
+  transition: all 0.5s;
+  z-index: 997;
 }
 
-.logo img {
-  height: 50px;
+.header .logo {
+  line-height: 1;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
+.header .logo img {
+  max-height: 32px;
+  margin-right: 8px;
 }
 
-nav a:hover {
-  color: #ff9900;
-  text-decoration: underline;
+.header .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--heading-color);
 }
 
+.scrolled .header {
+  box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Header on Scroll
+------------------------------*/
+.scrolled .header {
+  --background-color: rgba(0, 0, 0, 0.8);
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu
